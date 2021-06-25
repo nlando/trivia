@@ -11,19 +11,33 @@
 </head>
 
 <body>
-    <h1>Trivia!</h1>
-    <button>Restart Game</button>
-    <div>
-        <h2>Question:</h2>
-    </div>
-    <div>
-        <h2>Answers:</h2>
-    </div>
-    <div>
-        <h3>Correct/Wrong</h3>
-    </div>
-    <div>
-       <button>Next Question</button>
-    </div>
+    <!-- Landing Page -->
+    <!-- <div id="landing">
+        <h1>Let's Play Trivia!</h1> -->
+        <button id="play-now">Play Now</button>
+    <!-- </div> -->
+
+    <!-- Main Playing Page -->
+    <main>
+        <h1>Trivia!</h1>
+        <button id="restart">Restart Game</button>
+        <div>
+            <h2 id="question">Question:</h2>
+        </div>
+        <div>
+            <ul>
+                <button class="option" id="answer1"></button>
+                <button class="option" id="answer2"></button>
+                <button class="option" id="answer3"></button>
+                <button class="option" id="answer4"></button>
+            </ul>
+        </div>
+        <div>
+            <button id="submit">Submit</button>
+        </div>
+        <div>
+        <button id="next">Next Question</button>
+        </div>
+    </main>
 </body>
 </html>
