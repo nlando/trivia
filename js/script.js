@@ -9,7 +9,7 @@
 //4. Get "submit" to work
     //Grab selected answer variable
     //Compare it to answer
-    //NEED HELP
+    //DONE
 //5. Get "right/wrong" to work/display
     //If selection === answer, display right
     //Else if selection !== answer, display wrong
@@ -24,8 +24,11 @@ console.log('sanity check');
 async function createTrivia(e){
     e.preventDefault();
 
-const url = `https://opentdb.com/api.php?amount=5&category=21&difficulty=easy&type=multiple`;
+$('#next').css('display', 'none');
+$('.option').css('background-color', '#4766B7');
+$('#response').html('');
 
+const url = `https://opentdb.com/api.php?amount=5&category=21&difficulty=easy&type=multiple`;
 
 const response = await fetch(url);
 const data = await response.json();
@@ -38,11 +41,19 @@ $('#answer3').html(data.results[0].incorrect_answers[1]);
 $('#answer4').html(data.results[0].incorrect_answers[2]);
 
 
+$('.option').css('display', 'block');
+
+
 $('.option').on('click', function(e){
-    if (e.target.innerHTML === data.results[0].correct_answer){
+    let target = e.target;
+    if (target.innerHTML === data.results[0].correct_answer){
         console.log('correct!');
+        target.style.backgroundColor = "green";
+        $('#next').css('display', 'block');
     } else {
         console.log('wrong');
+        target.style.backgroundColor = "crimson";
+        target.style.animation = "shake";
     }
 });
 
@@ -50,3 +61,13 @@ $('.option').on('click', function(e){
 };
 
 $('#play-now').on('click', createTrivia);
+$('#next').on('click', createTrivia);
+
+
+//MOVE FROM FRONT PAGE TO DATA PAGE
+function moveToPage(){
+    $('#landing').animate({opacity: '-=1'}, 400, function(){this.remove()});
+    $('main').css('display', 'block');   
+    };
+
+$('#play-now').on('click', moveToPage);
