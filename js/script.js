@@ -13,11 +13,15 @@
 //5. Get "right/wrong" to work/display
     //If selection === answer, display right
     //Else if selection !== answer, display wrong
+    //DONE
 //6. Select next question
     //When next question is clicked, call trivia function again
-//7. Get "new game" to work
-//8. Get landing page to disappear and lead to page
-
+    //DONE
+//7. Get landing page to disappear and lead to page
+    //DONE
+//8. Set up README
+//9. Add wireframes
+//10. Submit github page
 
 console.log('sanity check');
 
