@@ -20,17 +20,19 @@
 //7. Get landing page to disappear and lead to page
     //DONE
 //8. Set up README
-//9. Add wireframes
-//10. Submit github page
+    //DONE
+//9. Submit github page
+    //DONE
 
-console.log('sanity check');
+console.log('sanity check')
 
+//PULL IN API DATA
 async function createTrivia(e){
     e.preventDefault();
 
+//ON EVERY SUBMISSION, REVERT PAGE BACK TO STARTING POINT
 $('#next').css('display', 'none');
 $('.option').css('background-color', '#4766B7');
-$('#response').html('');
 
 const url = `https://opentdb.com/api.php?amount=5&category=21&difficulty=easy&type=multiple`;
 
@@ -38,6 +40,7 @@ const response = await fetch(url);
 const data = await response.json();
 console.log(data);
 
+//JQUERY ASSIGN DATA TO PIECES OF HTML
 $('#question').html(data.results[0].question);
 $('#answer1').html(data.results[0].incorrect_answers[0]);
 $('#answer2').html(data.results[0].correct_answer);
@@ -47,7 +50,7 @@ $('#answer4').html(data.results[0].incorrect_answers[2]);
 
 $('.option').css('display', 'block');
 
-
+//CHANGE COLOR OF ANSWER BASED ON CORRECT/INCORRECT
 $('.option').on('click', function(e){
     let target = e.target;
     if (target.innerHTML === data.results[0].correct_answer){
@@ -64,14 +67,16 @@ $('.option').on('click', function(e){
 
 };
 
+//BOTH THE "PLAY NOW" AND "NEXT" BUTTONS CALL CREATETRIVIA()
 $('#play-now').on('click', createTrivia);
 $('#next').on('click', createTrivia);
 
 
-//MOVE FROM FRONT PAGE TO DATA PAGE
+//FUNCTION TO MOVE FROM LANDING PAGE TO GAME PAGE
 function moveToPage(){
     $('#landing').animate({opacity: '-=1'}, 400, function(){this.remove()});
     $('main').css('display', 'block');   
     };
 
+//WHEN PLAY-NOW BUTTON IS CLICKED, CALL MOVETOPAGE()
 $('#play-now').on('click', moveToPage);
