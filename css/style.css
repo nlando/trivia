@@ -19,24 +19,56 @@ button{
 }
 
 #landing{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     /* height: 80vh; */
     /* margin: 0 5%; */
 }
 
-#landing h1{
-    height: 100%;
-    color: white;
+
+#landing{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: #4766B7;
+    color: white;
     padding: 20vh 2%;
-    margin: 3vh;
+    margin: 3vh auto;
     border-radius: 30px;
-    font-size: 5em;
     width: 75%;
     text-align: center;
+    height: 50vh;
+}
+
+#landing h1{
+    font-size: 4em;
+
+}
+
+#play-now{
+    display:none;
+}
+
+#genres{
+    display: block;
+    list-style: none;
+    /* padding: 8%; */
+    width: 20%;
+}
+
+.genre{
+    font-size: 2em;
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 5%;
+    margin: 20% auto;
+    text-align: center;
+    /* padding: 10%; */
+   
+}
+
+.genre:hover{
+    background-color:crimson;
+    color: whitesmoke;
 }
 
 #play-now{
