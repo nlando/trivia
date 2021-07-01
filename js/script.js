@@ -30,9 +30,11 @@ console.log('sanity check')
 let userGenre;
 $('#sports').on('click', function(){userGenre = '21'});
 $('#history').on('click', function(){userGenre = '23'});
-$('#celebs').on('click', function(){userGenre = '26'});
+$('#movies').on('click', function(){userGenre = '11'});
 $('#music').on('click', function(){userGenre = '12'});
 
+
+let score = 0;
 
 //PULL IN API DATA
 async function createTrivia(e){
@@ -43,11 +45,12 @@ async function createTrivia(e){
     $('.option').css('background-color', '#4766B7');
     $('.option').css('display', 'block');
 
-const url = `https://opentdb.com/api.php?amount=10&category=${userGenre}&difficulty=easy&type=multiple`;
+const url = `https://opentdb.com/api.php?amount=20&category=${userGenre}&difficulty=easy&type=multiple`;
 
 const response = await fetch(url);
 const data = await response.json();
 console.log(data);
+
 
 
 //JQUERY ASSIGN DATA TO PIECES OF HTML
@@ -79,19 +82,25 @@ $('#answer4').html(answerOptions[3]);
 
 
 //CHANGE COLOR OF ANSWER BASED ON CORRECT/INCORRECT
-$('.option').on('click', function(e){
-    let target = e.target;
-    if (target.innerHTML === data.results[i].correct_answer){
-        console.log('correct!');
-        target.style.backgroundColor = "green";
-        $('#next').css('display', 'block');
-    } else {
-        console.log('wrong');
-        target.style.backgroundColor = "crimson";
-        target.style.animation = "shake";
+    $('.option').on('click', function(e){
+        
+          let target = e.target;
+         if (target.innerHTML === data.results[i].correct_answer){
+               console.log('correct!');
+               target.style.backgroundColor = "green";
+               $('#next').css('display', 'block');
+               score += 10;
+        } else {
+            console.log('wrong');
+            target.style.backgroundColor = "crimson";
+            target.style.animation = "shake";
+        }
+        $('#score').html(score);
+        });
     }
-});
-}
+
+    
+
 
 };
 
@@ -102,10 +111,22 @@ $('.genre').on('click', createTrivia);
 
 //FUNCTION TO MOVE FROM LANDING PAGE TO GAME PAGE
 function moveToTrivia(){
-    $('#landing').animate({opacity: '-=1'}, 400, function(){this.remove()});
+    $('#landing').animate({opacity: '-=1'}, 400, function(){$('#landing').css('display', 'none')});
     $('main').css('display', 'block');   
     };
 
+  
+    // this.remove()
 
-//WHEN PLAY-NOW BUTTON IS CLICKED, CALL MOVETOPAGE()
+//WHEN GENRE BUTTON IS CLICKED, CALL MOVETOPAGE()
 $('.genre').on('click', moveToTrivia);
+
+
+// //FUNCTION TO MOVE FROM GAME PAGE TO LANDING PAGE
+// function moveToLanding(){
+//         $('main').animate({opacity: '-=1'}, 400, function(){$('main').css('display', 'none')});
+//         $('#landing').css('display', 'flex');
+// }
+
+// //RETURN TO HOME BUTTON
+// $('#back-button').on('click', moveToLanding)
